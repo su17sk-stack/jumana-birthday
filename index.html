@@ -2,97 +2,219 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎀 Happy 16 Jumana 🎀</title>
+<title>وضحه 💕</title>
 
 <style>
 body{
   margin:0;
   height:100vh;
+  overflow:hidden;
   display:flex;
   justify-content:center;
   align-items:center;
-  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-  font-family:Arial, sans-serif;
-  overflow:hidden;
-}
-
-.gift{
-  width:160px;
-  height:160px;
-  background:#ff4d6d;
-  position:relative;
+  font-family: Arial;
   cursor:pointer;
-  border-radius:15px;
-}
-
-.ribbon-v{
-  position:absolute;
-  width:20px;
-  height:160px;
-  background:white;
-  left:70px;
-}
-
-.ribbon-h{
-  position:absolute;
-  height:20px;
-  width:160px;
-  background:white;
-  top:70px;
-}
-
-.lid{
-  position:absolute;
-  width:170px;
-  height:40px;
-  background:#c9184a;
-  top:-40px;
-  left:-5px;
-  border-radius:10px;
-  transition:0.6s;
-}
-
-.message{
-  position:absolute;
-  text-align:center;
+  background: radial-gradient(circle at top,#2c003e,#1a0028,#0f001a,#000000);
   color:white;
-  font-size:22px;
-  opacity:0;
-  transition:1s;
-  width:90%;
+  transition: background 1.5s;
 }
 
-.open .lid{
-  transform:translateY(-80px) rotate(-10deg);
+/* نجوم */
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  opacity:0.6;
+  animation: twinkle 3s infinite ease-in-out;
+}
+@keyframes twinkle{
+  0%{opacity:0.2;}
+  50%{opacity:1;}
+  100%{opacity:0.2;}
 }
 
-.show{
-  opacity:1;
+/* الهدية */
+#gift{
+  width:180px;
+  height:180px;
+  background:linear-gradient(45deg,#ff4d6d,#c9184a);
+  border-radius:15px;
+  position:relative;
+  box-shadow:0 0 40px rgba(255,0,120,0.6);
+}
+#gift:before{
+  content:"";
+  position:absolute;
+  width:25px;
+  height:180px;
+  background:white;
+  left:77px;
+}
+#gift:after{
+  content:"";
+  position:absolute;
+  height:25px;
+  width:180px;
+  background:white;
+  top:77px;
+}
+
+/* النص */
+#container{
+  display:none;
+  width:85%;
+  max-width:900px;
+  padding:40px;
+  text-align:center;
+  font-size:20px;
+  line-height:2;
+  border-radius:20px;
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.2);
+  box-shadow:0 0 40px rgba(255,255,255,0.1);
+  animation:fadeIn 0.8s;
+}
+@keyframes fadeIn{
+  from{opacity:0; transform:scale(0.95);}
+  to{opacity:1; transform:scale(1);}
+}
+
+/* قلوب */
+.heart{
+  position:absolute;
+  bottom:-20px;
+  font-size:20px;
+  animation: floatUp 6s linear infinite;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0);opacity:1}
+  100%{transform:translateY(-110vh);opacity:0}
+}
+
+/* نهاية */
+.final-line{
+  margin-top:25px;
+  font-size:23px;
+  animation: glowText 2s infinite alternate;
+}
+@keyframes glowText{
+  from{opacity:0.6;}
+  to{opacity:1;}
 }
 </style>
 </head>
 
 <body>
 
-<div class="gift" onclick="openGift()" id="giftBox">
-  <div class="lid"></div>
-  <div class="ribbon-v"></div>
-  <div class="ribbon-h"></div>
-</div>
-
-<div class="message" id="msg">
-  🎂 جمانه 🎂 <br><br>
-  اليوم صرتي 16 سنة 💕 <br>
-  كل سنة وانتي أميرة قلبي 👑 <br>
-  أحبج أكثر من كل شي ❤️
-</div>
+<div id="gift" onclick="openGift(event)"></div>
+<div id="container"></div>
 
 <script>
-function openGift(){
-  document.getElementById("giftBox").classList.add("open");
-  document.getElementById("msg").classList.add("show");
+
+/* نجوم */
+for(let i=0;i<120;i++){
+  let star=document.createElement("div");
+  star.className="star";
+  star.style.top=Math.random()*100+"vh";
+  star.style.left=Math.random()*100+"vw";
+  star.style.animationDuration=(2+Math.random()*3)+"s";
+  document.body.appendChild(star);
 }
+
+let texts=[
+
+"💕 وضحه 💕",
+
+"تدرين؟ وجودج بحياتي مو شي عادي… وجودج فرق.",
+
+"مو كل الناس يمرون ويتركون أثر… بس انتي خليتي أثر ما يروح.",
+
+"أحبج بطريقة هادية، بس عميقة… بدون ضجيج، بس توصل للقلب.",
+
+"إذا ضحكتي… أحس الدنيا صارت أخف، وإذا سكتي… أفكر فيج أكثر.",
+
+"أحبج لأنج انتي… مو لأن في سبب، بس لأن قلبي اختارج.",
+
+"أبي أكون الشخص اللي ترتاحين له، بدون ما تحتاجين تشرحـين.",
+
+"أبي أكون معاج بكل شي… بالفرح، بالتعب، وحتى بالصمت.",
+
+"لو خيروني بين ألف شي وبينج… أختارج بدون تفكير.",
+
+"وجودج بحياتي خلاني أفهم شنو يعني حب حقيقي.",
+
+"وآخر شي…<br><br>لو الزمن رجع فيني ألف مرة… كل مرة أختارج 💖"
+];
+
+let index=0;
+let opened=false;
+
+function openGift(e){
+  e.stopPropagation();
+  document.getElementById("gift").style.display="none";
+  document.getElementById("container").style.display="block";
+  opened=true;
+  showText();
+  startHearts();
+  explosion(60);
+}
+
+function showText(){
+  let container=document.getElementById("container");
+  container.innerHTML=texts[index];
+
+  if(index===texts.length-1){
+    cinematicEnding();
+  }
+}
+
+function nextText(){
+  if(opened && index<texts.length-1){
+    index++;
+    showText();
+  }
+}
+
+document.body.addEventListener("click",nextText);
+
+/* قلوب */
+function startHearts(){
+  setInterval(()=>{
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💗";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(15+Math.random()*25)+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>{heart.remove()},6000);
+  },600);
+}
+
+/* انفجار */
+function explosion(amount){
+  for(let i=0;i<amount;i++){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+    heart.style.left=50+"vw";
+    heart.style.fontSize="30px";
+    document.body.appendChild(heart);
+    setTimeout(()=>{heart.remove()},2000);
+  }
+}
+
+/* نهاية سينمائية */
+function cinematicEnding(){
+  explosion(120);
+
+  let final=document.createElement("div");
+  final.className="final-line";
+  final.innerHTML="✨ لأن بعض الأشخاص… مو بس حب… يكونون راحة ✨";
+  document.getElementById("container").appendChild(final);
+}
+
 </script>
 
 </body>
